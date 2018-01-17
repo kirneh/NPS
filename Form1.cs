@@ -347,7 +347,6 @@ namespace NPS
             {
                 int latest = Convert.ToInt32(GetPage("https://raw.githubusercontent.com/kirneh/Now-Playing-on-Spotify/master/version.txt?time" + DateTime.Now.ToString(), NPSUA));
                 int current = Convert.ToInt32(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.MinorRevision.ToString());
-                MessageBox.Show(latest.ToString());
                 if (latest <= current)
                     return;
                 if (MessageBox.Show("There is a newer version of NPS available. Would you like to upgrade?", "NPS", MessageBoxButtons.YesNo) == DialogResult.Yes)
