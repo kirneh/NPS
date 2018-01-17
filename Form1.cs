@@ -83,7 +83,7 @@ namespace NPS
 
             // About Page
 
-            lblVersion.Text = "v." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString();
+            lblVersion.Text = "v." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.MinorRevision.ToString();
 
             // Else
             txtLocation.Text = Settings.Default.SaveLocation;
