@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\HenrikCarlslund\Documents\NPS\</PublishUrlHistory>
-    <InstallUrlHistory />
-    <SupportUrlHistory />
+    <PublishUrlHistory>C:\Users\Kirneh\Documents\Visual Studio 2017\Projects\NPS - Copy\Releases\|C:\Users\Kirnehx\Desktop\Folders\NPS\|C:\Users\HenrikCarlslund\Documents\NPS\</PublishUrlHistory>
+    <InstallUrlHistory>https://github.com/kirneh/Now-Playing-on-Spotify/</InstallUrlHistory>
+    <SupportUrlHistory>http://twitter.com/Kirnehx</SupportUrlHistory>
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
 </Project>
