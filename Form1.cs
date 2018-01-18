@@ -83,7 +83,7 @@ namespace NPS
 
             // About Page
 
-            lblVersion.Text = "v." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + "." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.MinorRevision.ToString();
+            lblVersion.Text = "v." + Settings.Default.Version;
 
             // Else
             txtLocation.Text = Settings.Default.SaveLocation;
@@ -232,6 +232,8 @@ namespace NPS
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             Settings.Default.SaveLocation = txtLocation.Text;
+            Settings.Default.Save();
+            Settings.Default.Upgrade();
 
             btnSaveSettings.Enabled = false;
 
@@ -255,10 +257,12 @@ namespace NPS
         {
             System.Diagnostics.Process.Start("http://twitter.com/Kirnehx");
         }
+
         private void Notify(String message)
         {
             NotifyIcon.ShowBalloonTip(10000, "NPS", message, ToolTipIcon.None);
         }
+
         private void NotifyIcon_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
             if (!this.ShowInTaskbar)
@@ -267,6 +271,7 @@ namespace NPS
                 this.ShowInTaskbar = true;
             }
         }
+
         private void NotifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -287,6 +292,8 @@ namespace NPS
             if (tbCustomizeOutput.Text.Contains("{artist}") || tbCustomizeOutput.Text.Contains("{song}"))
             {
                 Settings.Default.OutputText = tbCustomizeOutput.Text;
+                Settings.Default.Save();
+                Settings.Default.Upgrade();
 
                 btnCustomizeSave.Enabled = false;
 
@@ -345,9 +352,10 @@ namespace NPS
         {
             try
             {
-                int latest = Convert.ToInt32(GetPage("https://raw.githubusercontent.com/kirneh/Now-Playing-on-Spotify/master/version.txt?time" + DateTime.Now.ToString(), NPSUA));
-                int current = Convert.ToInt32(System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Major.ToString() + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.MinorRevision.ToString());
-                if (latest <= current)
+                string latest = GetPage("https://raw.githubusercontent.com/kirneh/Now-Playing-on-Spotify/master/version.txt?time" + DateTime.Now.ToString(), NPSUA);
+                string current = Settings.Default.Version;
+
+                if (latest == current)
                     return;
                 if (MessageBox.Show("There is a newer version of NPS available. Would you like to upgrade?", "NPS", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -367,10 +375,14 @@ namespace NPS
             if (cbUpdate.Checked)
             {
                 Properties.Settings.Default.UpdateSettings = true;
+                Settings.Default.Save();
+                Settings.Default.Upgrade();
             }
             if (!cbUpdate.Checked)
             {
                 Properties.Settings.Default.UpdateSettings = false;
+                Settings.Default.Save();
+                Settings.Default.Upgrade();
             }
         }
     }
